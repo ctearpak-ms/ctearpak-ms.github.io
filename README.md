@@ -1,2 +1,1 @@
-# ctearpak-ms.github.io
-Public Hosting
+Nothing to see here
