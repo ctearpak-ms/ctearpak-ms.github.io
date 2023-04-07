@@ -1,0 +1,179 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <div class="steps-container">
+      <h1 class="scribe-title">Step-by-Step AKS Workflow - EKS to AKS Considerations</h1>
+      <p class="scribe-author">
+        <b>
+          <div>Created by Rick Kemery</div>
+          <br />
+        </b>
+      </p>
+      <p class="scribe-description">Create an AKS cluster in Azure and learn more about the workflow from start to finish - along with considerations when migrating from EKS workloads to AKS!</p>
+      <br />
+      <br />
+      <p class="scribe-step">1. Navigate to https://portal.azure.com/#home</p>
+      <p class="scribe-step">2. Click the "Search resources, services, and docs (G+/)" field.</p>
+      <p class="scribe-screenshot-container">
+        <img class="scribe-screenshot" width="560" alt="Screenshot of: Click the &quot;Search resources, services, and docs (G+/)&quot; field." src="https://ctearpak-ms.github.io/img/554948cb-fe0c-45ab-af35-343421fb6049/aa12f2f2-a316-4b46-8084-ff93eecae414.jpeg" />
+      </p>
+      <p class="scribe-step">3. Type "aks"</p>
+      <p class="scribe-step">4. Click "Kubernetes services"</p>
+      <p class="scribe-screenshot-container">
+        <img class="scribe-screenshot" width="560" alt="Screenshot of: Click &quot;Kubernetes services&quot;" src="https://ctearpak-ms.github.io/img/554948cb-fe0c-45ab-af35-343421fb6049/383507f7-2162-4367-946c-a935fd2a74db.jpeg" />
+      </p>
+      <p class="scribe-step">5. Click this icon to begin creating a Kubernetes service deployment.</p>
+      <p class="scribe-screenshot-container">
+        <img class="scribe-screenshot" width="560" alt="Screenshot of: Click this icon to begin creating a Kubernetes service deployment." src="https://ctearpak-ms.github.io/img/554948cb-fe0c-45ab-af35-343421fb6049/de6036a6-3284-442c-8987-e7b957376e95.jpeg" />
+      </p>
+      <p class="scribe-step">6. Click "Create a Kubernetes cluster" to begin the workflow.</p>
+      <p class="scribe-screenshot-container">
+        <img class="scribe-screenshot" width="560" alt="Screenshot of: Click &quot;Create a Kubernetes cluster&quot; to begin the workflow." src="https://ctearpak-ms.github.io/img/554948cb-fe0c-45ab-af35-343421fb6049/4ab2ec10-1953-4fb5-8f82-5ecde09ea511.jpeg" />
+      </p>
+      <p class="scribe-step">7. Click "(New) Resource group" for the AKS deployment; both AWS and Azure have the concept of Resource Groups; some key items are that one Azure resource is always associated with one resource group and it can be organized via tags. You can also manage them with the Web Interface (Azure Portal), REST API, Command Line, PowerShell, or ARM Templates.</p>
+      <p class="scribe-screenshot-container">
+        <img class="scribe-screenshot" width="560" alt="Screenshot of: Click &quot;(New) Resource group&quot; for the AKS deployment; both AWS and Azure have the concept of Resource Groups; some key items are that one Azure resource is always associated with one resource group and it can be organized via tags. You can also manage them with the Web Interface (Azure Portal), REST API, Command Line, PowerShell, or ARM Templates." src="https://ctearpak-ms.github.io/img/554948cb-fe0c-45ab-af35-343421fb6049/ef6b5492-0463-4100-962f-22778eca8761.jpeg" />
+      </p>
+      <p class="scribe-step">8. I have an example Resource Group created named "rk-aks-demo" that I will use.</p>
+      <p class="scribe-screenshot-container">
+        <img class="scribe-screenshot" width="560" alt="Screenshot of: I have an example Resource Group created named &quot;rk-aks-demo&quot; that I will use." src="https://ctearpak-ms.github.io/img/554948cb-fe0c-45ab-af35-343421fb6049/7492d03e-029d-4f9b-bd45-6dde690df6b2.jpeg" />
+      </p>
+      <p class="scribe-step">9. For demo purposes, we will use the "Dev/Test" Cluster preset configuration. One advantage in this workflow compared to AWS is that we offer several presets. These are 5 levels of presets that offer different advantages for cost and features/workloads that can get you started quick.</p>
+      <p class="scribe-screenshot-container">
+        <img class="scribe-screenshot" width="560" alt="Screenshot of: For demo purposes, we will use the &quot;Dev/Test&quot; Cluster preset configuration. One advantage in this workflow compared to AWS is that we offer several presets. These are 5 levels of presets that offer different advantages for cost and features/workloads that can get you started quick." src="https://ctearpak-ms.github.io/img/554948cb-fe0c-45ab-af35-343421fb6049/9b1a1a3e-e6c2-4127-8536-40b810321df3.jpeg" />
+      </p>
+      <p class="scribe-step">10. For demo purposes and Dev/Test environment, click "Best for experimenting with AKS or deploying a test app." Dev/Test will set system node pool size to B4ms shape with Cluster Autoscaling and 99.5% API server availability.</p>
+      <p class="scribe-screenshot-container">
+        <img class="scribe-screenshot" width="560" alt="Screenshot of: For demo purposes and Dev/Test environment, click &quot;Best for experimenting with AKS or deploying a test app.&quot; Dev/Test will set system node pool size to B4ms shape with Cluster Autoscaling and 99.5% API server availability." src="https://ctearpak-ms.github.io/img/554948cb-fe0c-45ab-af35-343421fb6049/c667c202-2fc3-4acb-b427-7eef893ec651.jpeg" />
+      </p>
+      <p class="scribe-step">11. Create a name for your cluster - click the "Kubernetes cluster name" field and enter it.</p>
+      <p class="scribe-screenshot-container">
+        <img class="scribe-screenshot" width="560" alt="Screenshot of: Create a name for your cluster - click the &quot;Kubernetes cluster name&quot; field and enter it." src="https://ctearpak-ms.github.io/img/554948cb-fe0c-45ab-af35-343421fb6049/261671af-c02d-40d6-a961-886e711b080a.jpeg" />
+      </p>
+      <p class="scribe-step">12. Since am I close to the Central US Azure datacenter, I chose it as my Region. Click "(US) Central US"</p>
+      <p class="scribe-screenshot-container">
+        <img class="scribe-screenshot" width="560" alt="Screenshot of: Since am I close to the Central US Azure datacenter, I chose it as my Region. Click &quot;(US) Central US&quot;" src="https://ctearpak-ms.github.io/img/554948cb-fe0c-45ab-af35-343421fb6049/75437863-1ff3-49de-b3ec-dc965fcafda6.jpeg" />
+      </p>
+      <p class="scribe-step">13. During setup of AKS, it is important to understand production workloads and plan for resilience against datacenter failures. AKS clusters that are deployed using availability zones can distribute nodes across multiple zones within a single region - improving cluster availability. This is also the recommended approach when considering migrating from Amazon EKS to AKS.</p>
+      <p class="scribe-screenshot-container">
+        <img class="scribe-screenshot" width="560" alt="Screenshot of: During setup of AKS, it is important to understand production workloads and plan for resilience against datacenter failures. AKS clusters that are deployed using availability zones can distribute nodes across multiple zones within a single region - improving cluster availability. This is also the recommended approach when considering migrating from Amazon EKS to AKS." src="https://ctearpak-ms.github.io/img/554948cb-fe0c-45ab-af35-343421fb6049/704db8ce-62c9-4c1b-b174-61cf0197372c.jpeg" />
+      </p>
+      <p class="scribe-step">14. Description of Availability Zones during setup.</p>
+      <p class="scribe-screenshot-container">
+        <img class="scribe-screenshot" width="560" alt="Screenshot of: Description of Availability Zones during setup." src="https://ctearpak-ms.github.io/img/554948cb-fe0c-45ab-af35-343421fb6049/ed7cd5e1-23d9-4758-b250-3c9519fff03e.jpeg" />
+      </p>
+      <p class="scribe-step">15. We will use the default k8s version selected. Note this may be different depending on the time you create the cluster as these options change as new versions get released. Click the version with "(default)" in it. You have the option to move to older and new (preview) releases right from the start. When migrating from EKS to AKS it is important to ensure your target k8s version is within the supported window for AKS.</p>
+      <p class="scribe-screenshot-container">
+        <img class="scribe-screenshot" width="560" alt="Screenshot of: We will use the default k8s version selected. Note this may be different depending on the time you create the cluster as these options change as new versions get released. Click the version with &quot;(default)&quot; in it. You have the option to move to older and new (preview) releases right from the start. When migrating from EKS to AKS it is important to ensure your target k8s version is within the supported window for AKS." src="https://ctearpak-ms.github.io/img/554948cb-fe0c-45ab-af35-343421fb6049/54311fc8-168d-467e-bcda-c7f31f8d11a2.jpeg" />
+      </p>
+      <p class="scribe-step">16. Since this is a demo, we can select 99.5% API server availability.  API server availability is an uptime service level agreement that guarantees a Kubernetes API server uptime of 99.95% clusters with one or more availability zones and 99.9% for all other clusters. </p>
+      <p class="scribe-screenshot-container">
+        <img class="scribe-screenshot" width="560" alt="Screenshot of: Since this is a demo, we can select 99.5% API server availability.  API server availability is an uptime service level agreement that guarantees a Kubernetes API server uptime of 99.95% clusters with one or more availability zones and 99.9% for all other clusters. " src="https://ctearpak-ms.github.io/img/554948cb-fe0c-45ab-af35-343421fb6049/c5257aea-8ad9-4cc4-8e3c-4b0d6c64c1e1.jpeg" />
+      </p>
+      <p class="scribe-step">17. In continuation of selecting an appropriate k8s version in line with our considerations from EKS to AKS, we can also select automatic upgrades. "Enabled with path (recommended)" will update the cluster to the latest patch version within the set minor version. We also have the option to select stable, rapid, node image, and disabled - depending on our workloads on EKS we might select stable for production workloads.</p>
+      <p class="scribe-screenshot-container">
+        <img class="scribe-screenshot" width="560" alt="Screenshot of: In continuation of selecting an appropriate k8s version in line with our considerations from EKS to AKS, we can also select automatic upgrades. &quot;Enabled with path (recommended)&quot; will update the cluster to the latest patch version within the set minor version. We also have the option to select stable, rapid, node image, and disabled - depending on our workloads on EKS we might select stable for production workloads." src="https://ctearpak-ms.github.io/img/554948cb-fe0c-45ab-af35-343421fb6049/386c3c1b-2407-48e3-9d96-adf81f8bb768.jpeg" />
+      </p>
+      <p class="scribe-step">18. Sizing the k8s nodes is important when considering EKS to AKS. The types of workloads and their usage will influence the choice of how many nodes and what node size we use for the cluster. It is also important to consider valid quotas for the migration. You should verify that your quotas and limits are sufficient for these resources and if necessary, request and increase in vCPU quota.</p>
+      <p class="scribe-screenshot-container">
+        <img class="scribe-screenshot" width="560" alt="Screenshot of: Sizing the k8s nodes is important when considering EKS to AKS. The types of workloads and their usage will influence the choice of how many nodes and what node size we use for the cluster. It is also important to consider valid quotas for the migration. You should verify that your quotas and limits are sufficient for these resources and if necessary, request and increase in vCPU quota." src="https://ctearpak-ms.github.io/img/554948cb-fe0c-45ab-af35-343421fb6049/715aaf7f-cdc9-4695-94af-46d464923f5c.jpeg" />
+      </p>
+      <p class="scribe-step">19. We can also select the min and max of nodes to use for autoscaling. If your EKS cluster uses autoscaling and was engineered for high availability and business continuity with respect to elasticity - then the number of nodes is important.</p>
+      <p class="scribe-screenshot-container">
+        <img class="scribe-screenshot" width="560" alt="Screenshot of: We can also select the min and max of nodes to use for autoscaling. If your EKS cluster uses autoscaling and was engineered for high availability and business continuity with respect to elasticity - then the number of nodes is important." src="https://ctearpak-ms.github.io/img/554948cb-fe0c-45ab-af35-343421fb6049/e4fbae24-763e-48a7-bd2f-9777e8fe20dd.jpeg" />
+      </p>
+      <p class="scribe-step">20. Go to the next page and click "Next: Node pools &gt;" Here we can configure additional node pools to handle a variety of workloads and in contrast to some of the obscurity in EKS, we can enable "virtual nodes" right from the start for Azure Container Instance fast burst scaling. We can also select the type of node pool OS disk encryption - important if you are planning to migrate from EKS with your own keys.</p>
+      <p class="scribe-screenshot-container">
+        <img class="scribe-screenshot" width="560" alt="Screenshot of: Go to the next page and click &quot;Next: Node pools &gt;&quot; Here we can configure additional node pools to handle a variety of workloads and in contrast to some of the obscurity in EKS, we can enable &quot;virtual nodes&quot; right from the start for Azure Container Instance fast burst scaling. We can also select the type of node pool OS disk encryption - important if you are planning to migrate from EKS with your own keys." src="https://ctearpak-ms.github.io/img/554948cb-fe0c-45ab-af35-343421fb6049/b4df95fc-9090-4c63-ac8d-3388164d8c73.jpeg" />
+      </p>
+      <p class="scribe-step">21. Next, we can move to Access. Click "Next : Access &gt;"</p>
+      <p class="scribe-screenshot-container">
+        <img class="scribe-screenshot" width="560" alt="Screenshot of: Next, we can move to Access. Click &quot;Next : Access &gt;&quot;" src="https://ctearpak-ms.github.io/img/554948cb-fe0c-45ab-af35-343421fb6049/8290152f-95ee-417a-ae71-cef16983ba84.jpeg" />
+      </p>
+      <p class="scribe-step">22. AKS setup allows for 3 types of authentication and authorization: Local accounts with k8s RBAC, Azure AD authentication with k8s RBAC, and Azure AD authentication with Azure RBAC. One strength of AKS is its tight coupling with Azure AD to use Azure role assignments for authorization checks on the cluster.</p>
+      <p class="scribe-screenshot-container">
+        <img class="scribe-screenshot" width="560" alt="Screenshot of: AKS setup allows for 3 types of authentication and authorization: Local accounts with k8s RBAC, Azure AD authentication with k8s RBAC, and Azure AD authentication with Azure RBAC. One strength of AKS is its tight coupling with Azure AD to use Azure role assignments for authorization checks on the cluster." src="https://ctearpak-ms.github.io/img/554948cb-fe0c-45ab-af35-343421fb6049/e75173b4-ad9a-4c9f-8ca3-458836758a6f.jpeg" />
+      </p>
+      <p class="scribe-step">23. Next, we will go to the Networking overview. Click "Next : Networking &gt;"</p>
+      <p class="scribe-screenshot-container">
+        <img class="scribe-screenshot" width="560" alt="Screenshot of: Next, we will go to the Networking overview. Click &quot;Next : Networking &gt;&quot;" src="https://ctearpak-ms.github.io/img/554948cb-fe0c-45ab-af35-343421fb6049/c2bfbb04-9ed2-442e-a22d-ae200a9ed7b5.jpeg" />
+      </p>
+      <p class="scribe-step">24. Networking is very important when considering migrating from EKS to AKS. It is important to inventory the range of services and applications that uses them in the EKS cluster and then follow best practices for downtime handling. You might typically migrate over time rather than all at once, meaning old and new enviroments might need to communicate over the network. If an application previously used ClusterIP services to communicate might need to be exposed as LoadBalancer type and secured appropriately after the migration. Ideally, you want to point clients to new services that are running on AKS and we recommend that you redirect traffic by updating DNS to point to the Load Balancing sitting in front of your AKS cluster - Azure Traffic Manager can direct customers to the desired k8s cluster and application instance.</p>
+      <p class="scribe-screenshot-container">
+        <img class="scribe-screenshot" width="560" alt="Screenshot of: Networking is very important when considering migrating from EKS to AKS. It is important to inventory the range of services and applications that uses them in the EKS cluster and then follow best practices for downtime handling. You might typically migrate over time rather than all at once, meaning old and new enviroments might need to communicate over the network. If an application previously used ClusterIP services to communicate might need to be exposed as LoadBalancer type and secured appropriately after the migration. Ideally, you want to point clients to new services that are running on AKS and we recommend that you redirect traffic by updating DNS to point to the Load Balancing sitting in front of your AKS cluster - Azure Traffic Manager can direct customers to the desired k8s cluster and application instance." src="https://ctearpak-ms.github.io/img/554948cb-fe0c-45ab-af35-343421fb6049/31ac540f-5431-4026-b028-ea57f397caf5.jpeg" />
+      </p>
+      <p class="scribe-step">25. In the network section, we can define and create a new virtual network. Both Azure VNet and AWS VPC segregate networks with subnets. Azure VNet assigns resources connected and deployed to the VNet a private IP address for the CIDR block specified and the smallest subnet supported is /29 and largest is a /8. Record the CIDR block range you need when migrating from EKS to AKS for k8s services and and the cluster as you do not want to experience IP exhaustion and also want to be able to scale accordingly.</p>
+      <p class="scribe-screenshot-container">
+        <img class="scribe-screenshot" width="560" alt="Screenshot of: In the network section, we can define and create a new virtual network. Both Azure VNet and AWS VPC segregate networks with subnets. Azure VNet assigns resources connected and deployed to the VNet a private IP address for the CIDR block specified and the smallest subnet supported is /29 and largest is a /8. Record the CIDR block range you need when migrating from EKS to AKS for k8s services and and the cluster as you do not want to experience IP exhaustion and also want to be able to scale accordingly." src="https://ctearpak-ms.github.io/img/554948cb-fe0c-45ab-af35-343421fb6049/0a959f1e-439d-47d6-82c8-2626a27eed00.jpeg" />
+      </p>
+      <p class="scribe-step">26. The k8s service address range description.</p>
+      <p class="scribe-screenshot-container">
+        <img class="scribe-screenshot" width="560" alt="Screenshot of: The k8s service address range description." src="https://ctearpak-ms.github.io/img/554948cb-fe0c-45ab-af35-343421fb6049/0bab37e6-63fb-4610-acb0-f773f013074c.jpeg" />
+      </p>
+      <p class="scribe-step">27. The k8s DNS service IP address description.</p>
+      <p class="scribe-screenshot-container">
+        <img class="scribe-screenshot" width="560" alt="Screenshot of: The k8s DNS service IP address description." src="https://ctearpak-ms.github.io/img/554948cb-fe0c-45ab-af35-343421fb6049/20241305-d527-42ed-8bef-848fc6429b26.jpeg" />
+      </p>
+      <p class="scribe-step">28. You can also change the network for the Docker Bridge address - Click "Docker Bridge address"</p>
+      <p class="scribe-screenshot-container">
+        <img class="scribe-screenshot" width="560" alt="Screenshot of: You can also change the network for the Docker Bridge address - Click &quot;Docker Bridge address&quot;" src="https://ctearpak-ms.github.io/img/554948cb-fe0c-45ab-af35-343421fb6049/9906389c-026a-46f3-905e-d7f139aba5a2.jpeg" />
+      </p>
+      <p class="scribe-step">29. Description for DNS name prefix for the hosted k8s API server FQDN - important to consider when migrating as this will be used to connect to when managing containers after creating the cluster.</p>
+      <p class="scribe-screenshot-container">
+        <img class="scribe-screenshot" width="560" alt="Screenshot of: Description for DNS name prefix for the hosted k8s API server FQDN - important to consider when migrating as this will be used to connect to when managing containers after creating the cluster." src="https://ctearpak-ms.github.io/img/554948cb-fe0c-45ab-af35-343421fb6049/7093f4a5-022c-424d-a5bd-940b099ff52e.jpeg" />
+      </p>
+      <p class="scribe-step">30. Enabling "HTTP Application Routing" will configure an ingress controller in your AKS cluster and as applications are deployed, the ingress controller will create publicly accessible DNS names for your application endpoints. Consider what this might mean for your applications as your migrate over - how many and what needs to be publicly available via ingress and what type of configurations are currently in place that need to be done in the new cluster.</p>
+      <p class="scribe-screenshot-container">
+        <img class="scribe-screenshot" width="560" alt="Screenshot of: Enabling &quot;HTTP Application Routing&quot; will configure an ingress controller in your AKS cluster and as applications are deployed, the ingress controller will create publicly accessible DNS names for your application endpoints. Consider what this might mean for your applications as your migrate over - how many and what needs to be publicly available via ingress and what type of configurations are currently in place that need to be done in the new cluster." src="https://ctearpak-ms.github.io/img/554948cb-fe0c-45ab-af35-343421fb6049/7911e832-b57f-4398-8742-73d593472272.jpeg" />
+      </p>
+      <p class="scribe-step">31. In this section, we can select the type of network policy structure for the k8s cluster. We can use Calico or Azure - Azure being one of the key differentiators out of the box vs EKS. Azure allows for Azure Network Policies via Azure Network Policy Manager (NPM) which uses IPTables for Linux and Host Network Service (HNS) ACLPolicies for Windows.</p>
+      <p class="scribe-screenshot-container">
+        <img class="scribe-screenshot" width="560" alt="Screenshot of: In this section, we can select the type of network policy structure for the k8s cluster. We can use Calico or Azure - Azure being one of the key differentiators out of the box vs EKS. Azure allows for Azure Network Policies via Azure Network Policy Manager (NPM) which uses IPTables for Linux and Host Network Service (HNS) ACLPolicies for Windows." src="https://ctearpak-ms.github.io/img/554948cb-fe0c-45ab-af35-343421fb6049/70188bdc-e611-4e09-899c-733de4edf0b8.jpeg" />
+      </p>
+      <p class="scribe-step">32. Click "Next : Integrations &gt;"</p>
+      <p class="scribe-screenshot-container">
+        <img class="scribe-screenshot" width="560" alt="Screenshot of: Click &quot;Next : Integrations &gt;&quot;" src="https://ctearpak-ms.github.io/img/554948cb-fe0c-45ab-af35-343421fb6049/bb119609-369c-4a64-bda3-58630fb387b4.jpeg" />
+      </p>
+      <p class="scribe-step">33. Out of the box, we can enable Microsoft Defender for Cloud which provides unified security management and threat protection across the workloads - importantly when migrating production workloads we want to consider the security policies and protection against threats as we build in AKS. Using Defender backed with Azure Monitor and Azure Policy allows for threat protection, container insights, and at-scale enforcements and safeguards for AKS clusters in a centralized, consistent manner through Azure Policy.</p>
+      <p class="scribe-screenshot-container">
+        <img class="scribe-screenshot" width="560" alt="Screenshot of: Out of the box, we can enable Microsoft Defender for Cloud which provides unified security management and threat protection across the workloads - importantly when migrating production workloads we want to consider the security policies and protection against threats as we build in AKS. Using Defender backed with Azure Monitor and Azure Policy allows for threat protection, container insights, and at-scale enforcements and safeguards for AKS clusters in a centralized, consistent manner through Azure Policy." src="https://ctearpak-ms.github.io/img/554948cb-fe0c-45ab-af35-343421fb6049/4823a2cd-9e6c-4fa0-a275-2df1ba7b6465.jpeg" />
+      </p>
+      <p class="scribe-step">34. When migrating from EKS to AKS, we likely will have a set of images that are pre-built or need built for the new cluster; we can use tools like Azure Migrate to help with that along with connecting the AKS cluster to Azure Container Registry to store and use these images.</p>
+      <p class="scribe-screenshot-container">
+        <img class="scribe-screenshot" width="560" alt="Screenshot of: When migrating from EKS to AKS, we likely will have a set of images that are pre-built or need built for the new cluster; we can use tools like Azure Migrate to help with that along with connecting the AKS cluster to Azure Container Registry to store and use these images." src="https://ctearpak-ms.github.io/img/554948cb-fe0c-45ab-af35-343421fb6049/939b5c91-7ce0-4afd-99c8-43e0266bbda4.jpeg" />
+      </p>
+      <p class="scribe-step">35. Click "Next : Advanced &gt;"</p>
+      <p class="scribe-screenshot-container">
+        <img class="scribe-screenshot" width="560" alt="Screenshot of: Click &quot;Next : Advanced &gt;&quot;" src="https://ctearpak-ms.github.io/img/554948cb-fe0c-45ab-af35-343421fb6049/bf89d67d-b3ed-41a7-bd9b-0a1366fddab8.jpeg" />
+      </p>
+      <p class="scribe-step">36. When migrating from EKS to AKS, it is important to know the type of data persistence and where the new data will be stored. When we create AKS cluster we have the option to enable secret store CSI driver which also allows us to integrate Azure Key Vault secrets. Ideally, when we migrate persistent volumes, we want to quiesce writes to the application, take snapshosts of the disks, create new managed disks from the snapshots, create persistent volumes in AKS, update the pod spec to use existing volumes rather than static provisioning, then deploy the application to AKS, validate it and point live traffic to the new cluster. You can use tools like Azure CLI Disk Copy extension and Azure Kube CLI extension to migrate volumes between k8s clusters.</p>
+      <p class="scribe-screenshot-container">
+        <img class="scribe-screenshot" width="560" alt="Screenshot of: When migrating from EKS to AKS, it is important to know the type of data persistence and where the new data will be stored. When we create AKS cluster we have the option to enable secret store CSI driver which also allows us to integrate Azure Key Vault secrets. Ideally, when we migrate persistent volumes, we want to quiesce writes to the application, take snapshosts of the disks, create new managed disks from the snapshots, create persistent volumes in AKS, update the pod spec to use existing volumes rather than static provisioning, then deploy the application to AKS, validate it and point live traffic to the new cluster. You can use tools like Azure CLI Disk Copy extension and Azure Kube CLI extension to migrate volumes between k8s clusters." src="https://ctearpak-ms.github.io/img/554948cb-fe0c-45ab-af35-343421fb6049/f84ce135-70d0-4afa-b8f1-396085d802fc.jpeg" />
+      </p>
+      <p class="scribe-step">37. Click "Next : Tags &gt;" here we can tag the AKS cluster for certain things like environment.</p>
+      <p class="scribe-screenshot-container">
+        <img class="scribe-screenshot" width="560" alt="Screenshot of: Click &quot;Next : Tags &gt;&quot; here we can tag the AKS cluster for certain things like environment." src="https://ctearpak-ms.github.io/img/554948cb-fe0c-45ab-af35-343421fb6049/6a770ed8-a699-47cb-84d8-4a4650c44d44.jpeg" />
+      </p>
+      <p class="scribe-step">38. We're ready to create our AKS cluster! Click "Next : Review + create &gt;"</p>
+      <p class="scribe-screenshot-container">
+        <img class="scribe-screenshot" width="560" alt="Screenshot of: We're ready to create our AKS cluster! Click &quot;Next : Review + create &gt;&quot;" src="https://ctearpak-ms.github.io/img/554948cb-fe0c-45ab-af35-343421fb6049/b71efd7f-2d07-4ed4-99eb-171b50c8270d.jpeg" />
+      </p>
+      <p class="scribe-step">39. After the cluster has been provisioned, we can connect to it by clicking "Connect to cluster"</p>
+      <p class="scribe-screenshot-container">
+        <img class="scribe-screenshot" width="560" alt="Screenshot of: After the cluster has been provisioned, we can connect to it by clicking &quot;Connect to cluster&quot;" src="https://ctearpak-ms.github.io/img/554948cb-fe0c-45ab-af35-343421fb6049/d8fe2b5a-62af-43bb-aea9-dcd532625bcb.jpeg" />
+      </p>
+      <p class="scribe-step">40. We can quickly get a snapshot of the current environment using Cloud Shell - Click "Open Cloud Shell" - from here it gives us all the commands to run and even sets the accout and credentials for us when we open Cloud Shell - then from here we can get deployments and list namespaces and being our EKS to AKS migration!</p>
+      <p class="scribe-screenshot-container">
+        <img class="scribe-screenshot" width="560" alt="Screenshot of: We can quickly get a snapshot of the current environment using Cloud Shell - Click &quot;Open Cloud Shell&quot; - from here it gives us all the commands to run and even sets the accout and credentials for us when we open Cloud Shell - then from here we can get deployments and list namespaces and being our EKS to AKS migration!" src="https://ctearpak-ms.github.io/img/554948cb-fe0c-45ab-af35-343421fb6049/c5b2649d-ee4b-43b4-a3ff-4d4d9562dada.jpeg" />
+      </p>
+      <br />
+      <h4 class="scribe-footer">
+        
+        <br />
+      </h4>
+      <br />
+    </div>
+  </body>
+</html>
